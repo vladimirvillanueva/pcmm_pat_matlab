@@ -5,7 +5,7 @@ close all; clear; clc;
 %% Metadate 
 compound= "BDKi PF-07328948";
 PAT= "PAT 5";
-folder= pwd;
+folder = "C:\Users\VILLAV16\Pfizer\Drug Product Development Analytics - Integrated Predictive Science\Projects\PharmaMV PAT Batch Trends\BDKi";
 %% Add the current folder (pwd) and all its subfolders to the MATLAB path for the current session
 addpath(genpath(pwd))
 %% Load Configuration File to Generate Report

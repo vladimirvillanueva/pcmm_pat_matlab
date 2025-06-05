@@ -89,8 +89,14 @@ tiledlayout(5,1)
 for idx = 1:5
     f3_axes(idx) = nexttile;
     if idx == 1
-        plot_var(tt,PAT5.Variable1Name(idx),PAT5.Label(idx),[80 120], ...
-        PAT5.Variable2Name(idx),PAT5.Variable3Name(idx))
+        % Plot CLS and Hybrid Soft-Sensor
+        plot_var(tt,PAT5.Variable1Name(idx),PAT5.Label(idx),[],[80 120], ...
+        PAT5.Variable2Name(idx))
+        % Plot Soft-Sensor
+        % ss_pred = API_granules_feeder_CMT_RTD_Comp_PV* 100/api_0
+        ss_pred = tt.x1430ME*100./tt.x1317ME;
+        plot(tt.Time,ss_pred,'-m')
+
         hold on
         yline(108,'--r',"HandleVisibility","off")
         yline(92,'--r',"HandleVisibility","off")
@@ -100,20 +106,25 @@ for idx = 1:5
         else
             legend({"Hybrid NIR-SS","CLS","Soft-Sensor"})
         end
-        hold off
-                  
+        hold off              
     elseif idx == 2 
         plot_var(tt,PAT5.Variable1Name(idx),PAT5.Label(idx),[])
         lgd = legend('show'); % Create legend
         set(lgd, 'Visible', 'off'); % Hide legend
-    elseif idx >= 3 && idx <= 4 
+    elseif idx == 3  
         stairs(tt.Time,tt.(string(PAT5.Variable1Name(idx))),'-k','LineWidth',2)
         ylabel(PAT5.Label(idx))
         ylim([0, 1.1]); yticks([0 1]);
+    elseif idx == 4 
+        stairs(tt.Time,tt.(string(PAT5.Variable1Name(idx))),'-k','LineWidth',2)
+        ylabel(PAT5.Label(idx))
+        ylim([0, 1.1]); yticks([0 1]);
+        legend("0 = Manual , 1 = Auto")
     else
         stairs(tt.Time,tt.(string(PAT5.Variable1Name(idx))),'-k','LineWidth',2)
         ylabel(PAT5.Label(idx))
         ylim([0, 5.1]); yticks([0 5]);
+        legend("0 = Off , 5 = On")
         xlabel('Time (HH:MM)')
     end
 end
