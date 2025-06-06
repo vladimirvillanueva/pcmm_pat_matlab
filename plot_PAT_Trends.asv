@@ -23,6 +23,7 @@ end
 %              error(['HPLC data provided is not valid. ' ...
 %                  'Please provide a valid Timetable.']);
 % end
+
 %% campaign
 campaign = string(campaign);
 %% Find Unique dates
@@ -31,10 +32,12 @@ campaigns_date = string(unique(datetime(year(tt.Time), month(tt.Time), day(tt.Ti
 if isempty(compound)
 compound = [];
 end 
+
 %% eLN Number
 if isempty(eln_number)
 eln_number = [];
 end 
+
 %% ss_pred = API_granules_feeder_CMT_RTD_Comp_PV* 100/api_0
 ss_pred = tt.x1430ME*100./tt.x1317ME; 
 %% Create a title for the plots
@@ -68,7 +71,7 @@ for idx = 1:6
 end
 sgtitle(figure_title)
 linkaxes(f1_axes,'x')
-xlim(f1_axes,"tight")
+xlim()
 %% Figure 2: CMT2
 CMT2 = config_table(categorical(config_table.Figure) =="CMT2",:);
 figures_pcmm(2)= figure("Name",strjoin(["CMT2",figure_name_string],"_"));
@@ -80,8 +83,8 @@ for idx = 1:4
         CMT2.Variable2Name(idx))
 end
 xlabel('Time (HH:MM)')
-sgtitle(figure_title)
-linkaxes(f2_axes,'x');xlim(f2_axes,"tight")
+    sgtitle(figure_title)
+    linkaxes(f2_axes,'x')
 %% Figure 3: PAT5
 PAT5 = config_table(categorical(config_table.Figure) =="PAT5",:);
 figures_pcmm(3)  = figure("Name",strjoin(["PAT5",figure_name_string],"_"));
@@ -126,8 +129,8 @@ for idx = 1:5
         xlabel('Time (HH:MM)')
     end
 end
-sgtitle(figure_title)
-linkaxes(f3_axes,'x'); xlim(f3_axes,"tight")
+    sgtitle(figure_title)
+    linkaxes(f3_axes,'x')
 %% Figure 4: CLS Predictions Comparison
 f4_axes = gobjects(1,1);
 figures_pcmm(4)  = figure("Name",strjoin(["PAT5_Zoom",figure_name_string],"_"));
@@ -148,7 +151,6 @@ idx = 1;
         end
         hold off
 f4_axes(1) = gca;
-xlim(f4_axes,"tight")
 sgtitle(figure_title)
 %% Figure 5: MST
 MST = config_table(categorical(config_table.Figure) =="MST",:);
@@ -185,8 +187,9 @@ for idx = 1:5
         legend(("5 = ON, 0 = OFF "),"Location","southeastoutside")
     end
 end
-sgtitle(figure_title)
-linkaxes(f5_axes,'x');xlim(f5_axes,"tight")
+    sgtitle(figure_title)
+    linkaxes(f4_axes,'x')
+
 %% Set the figures to be same format
 theseAxes = findobj(figures_pcmm,'Type','Axes');
 set(theseAxes,"FontSize",11);
