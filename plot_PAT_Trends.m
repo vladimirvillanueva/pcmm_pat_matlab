@@ -39,10 +39,7 @@ eln_number = [];
 end 
 
 %% ss_pred = API_granules_feeder_CMT_RTD_Comp_PV* 100/api_0
-        ss_pred = tt.x1430ME*100./tt.x1317ME;
-        
-
-
+ss_pred = tt.x1430ME*100./tt.x1317ME; 
 %% Create a title for the plots
 if isempty(figure_title)
 figure_title = string(eln_number) + " : "+ compound +" - " + "PCMM Campaign : " + campaign ...
@@ -98,9 +95,9 @@ for idx = 1:5
         % Plot CLS and Hybrid Soft-Sensor
         plot_var(tt,PAT5.Variable1Name(idx),PAT5.Label(idx),[80 120], ...
         PAT5.Variable2Name(idx))
+        hold on
         % Plot Soft-Sensor
         plot(tt.Time,ss_pred,'-m')
-        hold on
         yline(108,'--r',"HandleVisibility","off")
         yline(92,'--r',"HandleVisibility","off")
         if ~isempty(HPLC_data)
@@ -140,8 +137,9 @@ idx = 1;
 
         plot_var(tt,PAT5.Variable1Name(idx),PAT5.Label(idx),[85 115], ...
         PAT5.Variable2Name(idx))
-        plot(tt.Time,ss_pred,'-m')
         hold on
+        plot(tt.Time,ss_pred,'-m')
+        
         yline(108,'--r',"DisplayName", '108 %')
         yline(92,'--r',"DisplayName", '92 %')
         if ~isempty(HPLC_data)
