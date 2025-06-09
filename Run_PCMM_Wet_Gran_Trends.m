@@ -1,19 +1,19 @@
 %% Script to generate PAT5 Trends for post-campaign analysis
 % Vladimir Villanueva-Lopez
-%% clear the workspace
+% clear the workspace
 close all; clear; clc;
-%% Metadate 
+% Metadata 
 compound= "BDKi PF-07328948";
 PAT= "PAT 5";
 folder = "C:\Users\VILLAV16\Pfizer\Drug Product Development Analytics - Integrated Predictive Science\Projects\PharmaMV PAT Batch Trends\BDKi";
-%% Add the current folder (pwd) and all its subfolders to the MATLAB path for the current session
+% Add the current folder (pwd) and all its subfolders to the MATLAB path for the current session
 addpath(genpath(pwd))
-%% Load Configuration File to Generate Report
+% Load Configuration File to Generate Report
 config_table = readtable("Configuration_File_BDKi.xlsx","Sheet","figures");
-%% Read Mdat file
+% Read PharmaMV Files
 campaign_sum = import_campaign_summary("BDKi_Campaigns_Info.xlsx");
 campaign_sum = campaign_sum(campaign_sum.Selected_Trends == 1,:); 
-%% read BDKi Campaigns info day by day 
+% read BDKi Campaigns info day by day 
 campaign_info = import_campaign_info("BDKi_Campaigns_Info.xlsx");
 %% IPM and trends
 figureTable = table.empty();

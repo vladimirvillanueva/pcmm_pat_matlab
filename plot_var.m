@@ -1,6 +1,6 @@
-function plot_var(TT,variableName1,ylabel_comp,ylimits,variableName2,variableName3)
+function ax = plot_var(TT,variableName1,ylabel_comp,ylimits,variableName2,variableName3)
 %% Function that plot variables from a timetable based on variablename.
-
+    
     if nargin < 1 || isempty(TT)
             error(['No timetable selected. ' ...
                 'Please provide a valid timetable.']);
@@ -48,4 +48,5 @@ function plot_var(TT,variableName1,ylabel_comp,ylimits,variableName2,variableNam
     ylabel(ylabel_comp);
     legend("Location","southeastoutside");    
     hold off
+    ax = gca;
 end
