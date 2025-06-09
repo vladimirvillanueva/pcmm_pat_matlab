@@ -100,9 +100,9 @@ for idx = 1:5
         yline(92,'--r',"HandleVisibility","off")
         if ~isempty(HPLC_data)
             errorbar(HPLC_data.Time,HPLC_data.LC_Assay,HPLC_data.Std*3,'vertical','o','Color','b','MarkerFaceColor','c');
-            legend({"Hybrid NIR-SS","CLS","Soft-Sensor","LC Assay"})
+            legend({"Hybrid NIR-SS","CLS","Mass-Balance Model","LC Assay"})
         else
-            legend({"Hybrid NIR-SS","CLS","Soft-Sensor"})
+            legend({"Hybrid NIR-SS","CLS","Mass-Balance Model"})
         end
         hold off              
     elseif idx == 2 
@@ -142,9 +142,9 @@ idx = 1;
         yline(92,'--r',"DisplayName", '92 %')
         if ~isempty(HPLC_data)
             errorbar(HPLC_data.Time,HPLC_data.LC_Assay,HPLC_data.Std*3,'vertical','o','Color','b','MarkerFaceColor','c');
-            legend({"Hybrid NIR-SS","CLS","Soft-Sensor","108 %","92 %","LC Assay"})
+            legend({"Hybrid NIR-SS","CLS","Mass-Balance Model","108 %","92 %","LC Assay"})
         else
-            legend({"Hybrid NIR-SS","CLS","Soft-Sensor","108 %","92 %"})
+            legend({"Hybrid NIR-SS","CLS","Mass-Balance Model","108 %","92 %"})
         end
         hold off
 f4_axes(1) = gca;

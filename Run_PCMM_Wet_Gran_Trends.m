@@ -11,11 +11,11 @@ addpath(genpath(pwd))
 % Load Configuration File to Generate Report
 config_table = readtable("Configuration_File_BDKi.xlsx","Sheet","figures");
 % Read PharmaMV Files
-campaign_sum = import_campaign_summary("BDKi_Campaigns_Info.xlsx");
-campaign_sum = campaign_sum(campaign_sum.Selected_Trends == 1,:); 
-% read BDKi Campaigns info day by day 
 folder_campaign_info = "C:\Users\VILLAV16\OneDrive - Pfizer\Electronic Notebooks Biovia\" + ...
     "BDKi\BDKi_Campaigns_Info.xlsx";
+campaign_sum = import_campaign_summary(folder_campaign_info);
+campaign_sum = campaign_sum(campaign_sum.Selected_Trends == 1,:); 
+% read BDKi Campaigns info day by day 
 campaign_info = import_campaign_info(folder_campaign_info);
 %% IPM and trends
 figureTable = table.empty();
@@ -107,7 +107,7 @@ end
 %% Save IPM figures and Trends to PowerPoint
 for idx = 1:size(campaign_sum,1)
     thisCampaign = campaign_sum.Campaign(idx);
-    folderName = pwd + "\Output\" + thisCampaign; % Specify folder name
+    folderName = folder_campaign_info + "\Output\" + thisCampaign; % Specify folder name
     
     if ~exist(folderName,"dir") % Check if folder does not exist
         mkdir(folderName); % Create the folder
