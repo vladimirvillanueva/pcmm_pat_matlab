@@ -108,7 +108,7 @@ end
 folder_output = "C:\Users\VILLAV16\OneDrive - Pfizer\Electronic Notebooks Biovia\BDKi";
 for idx = 1:size(campaign_sum,1)
     thisCampaign = campaign_sum.Campaign(idx);
-    folderName = folder_campaign_info + "\Output\" + thisCampaign; % Specify folder name
+    folderName = folder_output + "\Output\" + thisCampaign; % Specify folder name
     
     if ~exist(folderName,"dir") % Check if folder does not exist
         mkdir(folderName); % Create the folder
