@@ -105,6 +105,7 @@ for idx = 1:height(campaign_sum)
     end
 end
 %% Save IPM figures and Trends to PowerPoint
+folder_output = "C:\Users\VILLAV16\OneDrive - Pfizer\Electronic Notebooks Biovia\BDKi";
 for idx = 1:size(campaign_sum,1)
     thisCampaign = campaign_sum.Campaign(idx);
     folderName = folder_campaign_info + "\Output\" + thisCampaign; % Specify folder name
