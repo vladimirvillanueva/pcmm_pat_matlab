@@ -9,7 +9,9 @@ folder = "C:\Users\VILLAV16\Pfizer\Drug Product Development Analytics - Integrat
 % Add the current folder (pwd) and all its subfolders to the MATLAB path for the current session
 addpath(genpath(pwd))
 % Load Configuration File to Generate Report
-config_table = readtable("Configuration_File_BDKi.xlsx","Sheet","figures");
+location_config_file = "C:\Users\VILLAV16\OneDrive - Pfizer\Electronic Notebooks Biovia\" + ...
+    "BDKi\Configuration_File_BDKi.xlsx";
+config_table = readtable(location_config_file,"Sheet","figures");
 % Read PharmaMV Files
 folder_campaign_info = "C:\Users\VILLAV16\OneDrive - Pfizer\Electronic Notebooks Biovia\" + ...
     "BDKi\BDKi_Campaigns_Info.xlsx";
