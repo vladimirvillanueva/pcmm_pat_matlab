@@ -23,7 +23,7 @@ for idx = 1:height(campaign_sum)
     % Time range to trim PharmaMV Timetable based on full campaign
     t_range_campaign = timerange(campaign_sum.Start_Date(idx),campaign_sum.Stop_Date(idx), "closed");
     % Conditional to load matlab or mdat file format 
-    if campaign_sum.PMV_Data_Format == "Matlab"
+    if campaign_sum.PMV_Data_Format(idx) == "Matlab"
         load (folder + campaign_sum.PMV_Data(idx))
         % Convert matrix to table with appropriate column names
         columnNames = "x" + erase(Signal_Info(1,:),'.');
@@ -39,9 +39,9 @@ for idx = 1:height(campaign_sum)
         campaign_sum.DB(idx) = {TT};
     else  % Data in mdat file format.
         % Create DataStore Objects
-        campaign_sum.DB(idx) = PMV.DataStore("Sources",folder + campaign_sum.PMV_Data(idx));
+        campaign_sum.DB(idx) = {PMV.DataStore("Sources",folder + campaign_sum.PMV_Data(idx))};
             % Create IPM assessment
-        TT = campaign_sum.DB(idx).Data; TT = TT(t_range_campaign,:);          
+        TT = campaign_sum.DB{idx}.Data; TT = TT(t_range_campaign,:);          
     end
         % Create IPM assessment
         [~,~,campaign_sum.fig_IPM(idx),TT_IPM] = PCMM.PAT5.IPM_IPC_Check(TT,0.09,23, ...
@@ -80,11 +80,11 @@ for idx = 1:height(campaign_sum)
     %  Display trends
     thisCampaign = campaign_sum.Campaign(idx);
     campaign_info_sub = campaign_info(campaign_info.Campaign == thisCampaign,:);
-    if campaign_sum.PMV_Data_Format == "Matlab"
+    if campaign_sum.PMV_Data_Format(idx) == "Matlab"
         thisDB = campaign_sum.DB(idx);
         thisDB = thisDB{1};
     else 
-        thisDB = campaign_sum.DB(idx).Data;
+        thisDB = campaign_sum.DB{idx}.Data;
     end
     thisELN = campaign_sum.ELN(idx);
     for i = 1:height(campaign_info_sub)
