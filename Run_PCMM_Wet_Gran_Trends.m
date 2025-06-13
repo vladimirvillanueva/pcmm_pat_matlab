@@ -40,7 +40,6 @@ for idx = 1:height(campaign_sum)
     else  % Data in mdat file format.
         % Create DataStore Objects
         campaign_sum.DB(idx) = {PMV.DataStore("Sources",folder + campaign_sum.PMV_Data(idx))};
-            % Create IPM assessment
         TT = campaign_sum.DB{idx}.Data; TT = TT(t_range_campaign,:);          
     end
         % Create IPM assessment
